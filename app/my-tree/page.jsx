@@ -58,7 +58,7 @@ export default function Page() {
         progress: undefined,
         theme: "dark",
     });
-    navigator.clipboard.writeText(`https://christmas-tree.vercel.app?tree=${tree?.tree_id}`);
+    navigator.clipboard.writeText(`https://giang-sinh.vercel.app?tree=${tree?.tree_id}`);
   }
 
   return (

@@ -20,6 +20,7 @@ export default function Page() {
   const router = useRouter();
   const user = useUser((state) => state.user);
   const setMyTree = useUser((state) => state.setMyTree);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -29,20 +30,22 @@ export default function Page() {
 
   async function handleCreate() {
     try {
-    const {data} =  await newTree({
+      setIsLoading(true);
+      const { data } = await newTree({
         bg,
         tree,
         toper,
         user_id: user?.id,
         name_user: user?.user_metadata?.full_name,
       });
-     await setMyTree(data[0])
-     router.push("/my-tree")
+      await setMyTree(data[0]);
+      setIsLoading(false);
+      router.push("/my-tree");
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      setIsLoading(false);
     }
   }
-
 
   return (
     <div className="bg-black h-[700px] flex justify-center">
@@ -309,8 +312,9 @@ export default function Page() {
             className="flex-1"
             color="red"
             onClick={handleCreate}
+            disabled={isLoading}
           >
-            Lưu cây lại{" "}
+            {isLoading ? "Đang lưu..." : "Lưu cây lại"}
           </Button>
         </div>
       </div>
