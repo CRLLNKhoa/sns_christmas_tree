@@ -24,7 +24,7 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const handleOpen = () => setOpen(!open);
-  const numberArray = Array.from({ length: 26 }, (_, index) => index + 1);
+  const numberArray = Array.from({ length: 36 }, (_, index) => index + 1);
   const setMyTree = useUser((state) => state.setMyTree);
   const list = useUser((state) => state.list);
   const setList = useUser((state) => state.setList);
@@ -315,7 +315,7 @@ export default function Home() {
           </div>
           <div className="w-full absolute bottom-0 py-6 flex justify-center items-center gap-4">
             <Button
-              onClick={handleRender}
+              onClick={() => router.push("/auth")}
               color="white"
             >
               Create tree
