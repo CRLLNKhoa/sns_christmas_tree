@@ -468,7 +468,7 @@ const Item = ({ position, img = 1, user = "kevin", content = "" }) => {
           position === 10 && "top-[280px] left-[150px]"
         )}
       >
-        <h1 className="absolute w-[80px] -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold">
+        <h1 className={cn("absolute w-[80px] text-center -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold", user === "Lương Khoa" && "text-red-500")}>
           {user}
         </h1>
         <img
@@ -540,7 +540,7 @@ const ItemV1 = ({ position, img = 1, user = "kevin", content = "" }) => {
           position === 10 && "top-[280px] right-[80px]"
         )}
       >
-        <h1 className="absolute w-[80px] text-center truncate -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold">
+        <h1 className={cn("absolute w-[80px] text-center truncate -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold", user === "Lương Khoa" && "text-red-500")}>
           {user}
         </h1>
         <img
