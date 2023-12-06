@@ -60,7 +60,7 @@ export default function Home() {
         <div className="css-1dt74mc">
           <div className=" bg-transparent flex flex-col p-4 justify-between w-full items-center text-white">
             <h1>Đang tải thông tin...</h1>
-            <p className="text-sm">💌 Nhận được 0 tin nhắn!</p>
+            <p className="text-sm">💌 Nếu quá trình này diễn ra lâu hãy kiểm tra lại link!</p>
           </div>
           <div className="flex flex-col justify-between relative">
             <div className="top-0 h-[436px] w-full flex justify-center items-end md:items-center">
@@ -74,15 +74,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="w-full absolute bottom-0 py-6 flex justify-center items-center gap-4">
-            <Button color="white">Create tree</Button>
-            <Button
-              onClick={handleOpen}
-              color="red"
-            >
-              Decorate
-            </Button>
           </div>
           <span
             className="absolute bottom-0 left-1/2 -translate-x-1/2 px-2 text-[8px] flex flex-col leading-none text-center 
