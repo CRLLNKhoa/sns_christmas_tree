@@ -33,8 +33,7 @@ export default function Home() {
 
   const readAll = async () => {
     try {
-      const { data } = await readTree(search);
-      console.log(data);
+      const { data } = await readTree(search);;
       setMyTree(data?.tree[0]);
       setList(data?.list);
       setLength(Math.ceil(data?.list?.length / 10));
@@ -178,6 +177,40 @@ export default function Home() {
     ));
   };
 
+  console.log("Xin chào tôi là Lương Khoa!");
+
+  const ngayGianhSinh = '2023-12-25';
+  function tinhNgayConLaiDenNgayGianhSinh(ngayGianhSinh) {
+    // Chuyển đổi ngày giản sinh thành đối tượng Date
+    const ngayGianhSinhDate = new Date(ngayGianhSinh);
+  
+    // Kiểm tra nếu định dạng ngày giản sinh không hợp lệ
+    if (isNaN(ngayGianhSinhDate.getTime())) {
+      return "Định dạng ngày không hợp lệ. Sử dụng định dạng 'YYYY-MM-DD'.";
+    }
+  
+    // Lấy ngày hiện tại
+    const ngayHienTai = new Date();
+  
+    // Tính số mili giây còn lại giữa ngày giản sinh và ngày hiện tại
+    const soMiligiayConLai = ngayGianhSinhDate - ngayHienTai;
+  
+    // Chuyển đổi số mili giây thành số ngày
+    const soNgayConLai = Math.ceil(soMiligiayConLai / (1000 * 60 * 60 * 24));
+  
+    // Kiểm tra xem ngày giản sinh đã qua hay chưa
+    if (soNgayConLai < 0) {
+      return "Đã qua ngày giáng sinh.";
+    }
+
+    if (soNgayConLai === 0) {
+      return "Chúc mừng Giáng Sinh!";
+    }
+  
+    return `Còn ${soNgayConLai} ngày đến ngày giáng sinh`;
+  }
+  
+
   const handleAddWhises = async () => {
     try {
       if(name!=="",content!==""){
@@ -224,6 +257,7 @@ export default function Home() {
               {"'s tree"}
             </h1>
             <p className="text-sm">💌 Nhận được {list?.length} tin nhắn!</p>
+            <p className="font-bold text-[12px]">{tinhNgayConLaiDenNgayGianhSinh(ngayGianhSinh)}</p>
           </div>
           <div className="flex flex-col justify-between relative">
             <div className="top-0 h-[436px] w-full flex justify-center items-end md:items-center">
@@ -259,7 +293,7 @@ export default function Home() {
                           color="white"
                           size="lg"
                           onClick={handlePrev}
-                          className="!absolute top-2/4 left-36 -translate-y-2/4"
+                          className="!absolute top-2/4 left-8 lg:left-36 -translate-y-2/4"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -287,7 +321,7 @@ export default function Home() {
                           color="white"
                           size="lg"
                           onClick={handleNext}
-                          className="!absolute top-2/4 !right-36 -translate-y-2/4"
+                          className="!absolute top-2/4 right-8 lg:!right-36 -translate-y-2/4"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -456,19 +490,19 @@ const Item = ({ position, img = 1, user = "kevin", content = "" }) => {
         onClick={handleOpen}
         className={cn(
           "w-[60px] h-[60px] cursor-pointer absolute select-none",
-          position === 1 && "top-[100px] left-[220px]",
-          position === 2 && "top-[100px] right-[220px]",
+          position === 1 && "top-[100px] left-[120px] lg:left-[230px]",
+          position === 2 && "top-[100px] right-[120px] lg:right-[230px]",
           position === 3 && "top-[180px] right-50",
-          position === 4 && "top-[190px] right-[200px]",
-          position === 5 && "top-[190px] left-[200px]",
-          position === 6 && "top-[260px] right-[210px]",
-          position === 7 && "top-[260px] left-[210px]",
+          position === 4 && "top-[180px] left-[80px] lg:left-[200px]",
+          position === 5 && "top-[180px] right-[80px] lg:right-[200px]",
+          position === 6 && "top-[260px] right-[40px] lg:right-[210px]",
+          position === 7 && "top-[260px] left-[40px] lg:left-[210px]",
           position === 8 && "top-[310px] right-50",
-          position === 9 && "top-[280px] right-[150px]",
-          position === 10 && "top-[280px] left-[150px]"
+          position === 9 && "top-[280px] right-[100px] lg:right-[150px]",
+          position === 10 && "top-[280px] left-[100px] lg:left-[150px]"
         )}
       >
-        <h1 className={cn("absolute w-[80px] text-center -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold", user === "Lương Khoa" && "text-red-500")}>
+        <h1 className={cn("absolute w-[80px] text-center -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold", user === "Lương Khoa" && "text-red-500", user === "Hải Yến" && "text-yellow-500")}>
           {user}
         </h1>
         <img
@@ -540,7 +574,7 @@ const ItemV1 = ({ position, img = 1, user = "kevin", content = "" }) => {
           position === 10 && "top-[280px] right-[80px]"
         )}
       >
-        <h1 className={cn("absolute w-[80px] text-center truncate -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold", user === "Lương Khoa" && "text-red-500")}>
+        <h1 className={cn("absolute w-[80px] text-center truncate -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold", user === "Lương Khoa" && "text-red-500", user === "Hải Yến" && "text-yellow-500")}>
           {user}
         </h1>
         <img
