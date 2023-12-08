@@ -65,3 +65,21 @@ export async function newWhises(whises) {
       return { status: "Error!", data: error };
     } else return { status: "Success!", data: data };
   }
+
+  export async function getMeta(tree_id) {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+      .from("tree")
+      .select("name_user")
+      .eq("tree_id", tree_id);
+    if (error ) {
+      return {
+        status: "Error!",
+        data: { error: error},
+      };
+    } else
+      return {
+        status: "Success!",
+        data: data
+      };
+  }

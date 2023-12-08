@@ -33,7 +33,7 @@ export default function Home() {
 
   const readAll = async () => {
     try {
-      const { data } = await readTree(search);;
+      const { data } = await readTree(search);
       setMyTree(data?.tree[0]);
       setList(data?.list);
       setLength(Math.ceil(data?.list?.length / 10));
@@ -59,7 +59,9 @@ export default function Home() {
         <div className="css-1dt74mc">
           <div className=" bg-transparent flex flex-col p-4 justify-between w-full items-center text-white">
             <h1>Đang tải thông tin...</h1>
-            <p className="text-sm">💌 Nếu quá trình này diễn ra lâu hãy kiểm tra lại link!</p>
+            <p className="text-sm">
+              💌 Nếu quá trình này diễn ra lâu hãy kiểm tra lại link!
+            </p>
           </div>
           <div className="flex flex-col justify-between relative">
             <div className="top-0 h-[436px] w-full flex justify-center items-end md:items-center">
@@ -179,25 +181,25 @@ export default function Home() {
 
   console.log("Xin chào tôi là Lương Khoa!");
 
-  const ngayGianhSinh = '2023-12-25';
+  const ngayGianhSinh = "2023-12-25";
   function tinhNgayConLaiDenNgayGianhSinh(ngayGianhSinh) {
     // Chuyển đổi ngày giản sinh thành đối tượng Date
     const ngayGianhSinhDate = new Date(ngayGianhSinh);
-  
+
     // Kiểm tra nếu định dạng ngày giản sinh không hợp lệ
     if (isNaN(ngayGianhSinhDate.getTime())) {
       return "Định dạng ngày không hợp lệ. Sử dụng định dạng 'YYYY-MM-DD'.";
     }
-  
+
     // Lấy ngày hiện tại
     const ngayHienTai = new Date();
-  
+
     // Tính số mili giây còn lại giữa ngày giản sinh và ngày hiện tại
     const soMiligiayConLai = ngayGianhSinhDate - ngayHienTai;
-  
+
     // Chuyển đổi số mili giây thành số ngày
     const soNgayConLai = Math.ceil(soMiligiayConLai / (1000 * 60 * 60 * 24));
-  
+
     // Kiểm tra xem ngày giản sinh đã qua hay chưa
     if (soNgayConLai < 0) {
       return "Đã qua ngày giáng sinh.";
@@ -206,15 +208,14 @@ export default function Home() {
     if (soNgayConLai === 0) {
       return "Chúc mừng Giáng Sinh!";
     }
-  
+
     return `Còn ${soNgayConLai} ngày đến ngày giáng sinh`;
   }
-  
 
   const handleAddWhises = async () => {
     try {
-      if(name!=="",content!==""){
-        setLoading(true)
+      if ((name !== "", content !== "")) {
+        setLoading(true);
         const { data } = await newWhises({
           tree_id: tree?.tree_id,
           nickname: name,
@@ -232,13 +233,12 @@ export default function Home() {
           progress: undefined,
           theme: "light",
         });
-        setLoading(false)
+        setLoading(false);
         handleOpen();
-      }else alert("Bạn vui lòng nhập tên và nội dung!")
-    
+      } else alert("Bạn vui lòng nhập tên và nội dung!");
     } catch (error) {
       console.log(error);
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -257,7 +257,9 @@ export default function Home() {
               {"'s tree"}
             </h1>
             <p className="text-sm">💌 Nhận được {list?.length} tin nhắn!</p>
-            <p className="font-bold text-[12px]">{tinhNgayConLaiDenNgayGianhSinh(ngayGianhSinh)}</p>
+            <p className="font-bold text-[12px]">
+              {tinhNgayConLaiDenNgayGianhSinh(ngayGianhSinh)}
+            </p>
           </div>
           <div className="flex flex-col justify-between relative">
             <div className="top-0 h-[436px] w-full flex justify-center items-end md:items-center">
@@ -441,9 +443,17 @@ export default function Home() {
             color={loading ? "white" : "blue"}
             onClick={handleAddWhises}
             className="mr-4"
-             disabled={loading}
+            disabled={loading}
           >
-            {loading ? <img src="/loading.svg" className="w-4 h-4 animate-spin" alt="" /> : <span>Trang trí</span>}
+            {loading ? (
+              <img
+                src="/loading.svg"
+                className="w-4 h-4 animate-spin"
+                alt=""
+              />
+            ) : (
+              <span>Trang trí</span>
+            )}
           </Button>
           <Button
             variant="gradient"
@@ -502,7 +512,13 @@ const Item = ({ position, img = 1, user = "kevin", content = "" }) => {
           position === 10 && "top-[280px] left-[100px] lg:left-[150px]"
         )}
       >
-        <h1 className={cn("absolute w-[80px] truncate text-center -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold", user === "Lương Khoa" && "text-red-500", user === "Hải Yến" && "text-yellow-500")}>
+        <h1
+          className={cn(
+            "absolute w-[80px] truncate text-center -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold",
+            user === "Lương Khoa" && "text-red-500",
+            user === "Hải Yến" && "text-yellow-500"
+          )}
+        >
           {user}
         </h1>
         <img
@@ -574,7 +590,13 @@ const ItemV1 = ({ position, img = 1, user = "kevin", content = "" }) => {
           position === 10 && "top-[280px] right-[80px]"
         )}
       >
-        <h1 className={cn("absolute w-[80px] text-center truncate -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold", user === "Lương Khoa" && "text-red-500", user === "Hải Yến" && "text-yellow-500")}>
+        <h1
+          className={cn(
+            "absolute w-[80px] text-center truncate -top-[10px] left-1/2 -translate-x-1/2 text-white text-[12px] font-bold",
+            user === "Lương Khoa" && "text-red-500",
+            user === "Hải Yến" && "text-yellow-500"
+          )}
+        >
           {user}
         </h1>
         <img

@@ -3,13 +3,18 @@ import './globals.css'
 import SessionProvider from '@/components/session-provider'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getMeta } from '@/actions/api';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
-  title: 'Chào mừng giáng sinh 2023!',
-  description: 'Giáng sinh vui vẻ!',
-  
+export async function generateMetadata() {
+  let title = "Giáng sinh vui vẻ!"
+  return {
+    title: title,
+    openGraph: {
+      images: ["/assets/item/item12.webp"],
+    },
+  };
 }
 
 export default function RootLayout({ children }) {
